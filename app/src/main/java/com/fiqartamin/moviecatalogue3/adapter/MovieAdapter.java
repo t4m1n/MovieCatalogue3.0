@@ -1,6 +1,7 @@
 package com.fiqartamin.moviecatalogue3.adapter;
 
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.fiqartamin.moviecatalogue3.Model.Movie;
+import com.fiqartamin.moviecatalogue3.MovieDetActivity;
 import com.fiqartamin.moviecatalogue3.R;
 
 import java.util.ArrayList;
@@ -36,6 +38,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             @Override
             public void onClick(View v) {
                 Toast.makeText(vHolder.itemView.getContext(), movies.get(vHolder.getAdapterPosition()).getTitle(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(vHolder.itemView.getContext(), MovieDetActivity.class);
+                intent.putExtra(MovieDetActivity.EXTRA_MOVIE, movies.get(vHolder.getAdapterPosition()));
+                vHolder.itemView.getContext().startActivities(new Intent[]{intent});
+
             }
         });
         return vHolder;
