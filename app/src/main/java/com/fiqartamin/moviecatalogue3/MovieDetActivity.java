@@ -2,7 +2,9 @@ package com.fiqartamin.moviecatalogue3;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -12,6 +14,7 @@ public class MovieDetActivity extends AppCompatActivity {
     public static final String EXTRA_MOVIE = "extra_movie";
     TextView tvTitle, tvRelease, tvDesc, tvCategory, tvAverage;
     ImageView imgPhoto, imgThumb;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +22,9 @@ public class MovieDetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_det);
 
         Movie selectedMovie = getIntent().getParcelableExtra(EXTRA_MOVIE);
+        progressBar = findViewById(R.id.progressBar);
+
+        showLoading(true);
 
         if (selectedMovie != null) {
             tvTitle = findViewById(R.id.movie_det_title);
@@ -51,6 +57,16 @@ public class MovieDetActivity extends AppCompatActivity {
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setTitle(selectedMovie.getTitle());
             }
+
+            showLoading(false);
+        }
+    }
+
+    private void showLoading(Boolean state) {
+        if (state) {
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
         }
     }
 }
