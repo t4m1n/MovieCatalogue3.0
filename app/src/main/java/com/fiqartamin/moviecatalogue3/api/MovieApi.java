@@ -1,6 +1,5 @@
 package com.fiqartamin.moviecatalogue3.api;
 
-import com.fiqartamin.moviecatalogue3.Model.DetResponse;
 import com.fiqartamin.moviecatalogue3.Model.MovieResponse;
 import com.fiqartamin.moviecatalogue3.Model.TvResponse;
 
@@ -17,18 +16,6 @@ public interface MovieApi {
 
     @GET ("discover/tv")
     Call<TvResponse> getJSONTv(
-            @Query("api_key") String apiKey,
-            @Query("language") int language
-    );
-
-    @GET ("movie")
-    Call<DetResponse> getJSONMovie_det(
-            @Query("api_key") String apiKey,
-            @Query("language") int language
-    );
-
-    @GET ("tv")
-    Call<DetResponse> getJSONTv_det (
             @Query("api_key") String apiKey,
             @Query("language") int language
     );
