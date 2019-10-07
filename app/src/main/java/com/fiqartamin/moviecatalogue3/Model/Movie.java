@@ -25,13 +25,13 @@ public class Movie implements Parcelable {
     private String backdrop;
 
     @SerializedName("vote_average")
-    private String average;
+    private Double average;
 
-    public String getAverage() {
+    public Double getAverage() {
         return average;
     }
 
-    public void setAverage(String average) {
+    public void setAverage(Double average) {
         this.average = average;
     }
 
@@ -96,7 +96,7 @@ public class Movie implements Parcelable {
         dest.writeString(this.photo);
         dest.writeString(this.id);
         dest.writeString(this.backdrop);
-        dest.writeString(this.average);
+        dest.writeDouble(this.average);
     }
 
     public Movie() {
@@ -109,7 +109,7 @@ public class Movie implements Parcelable {
         this.photo = in.readString();
         this.id = in.readString();
         this.backdrop = in.readString();
-        this.average = in.readString();
+        this.average = in.readDouble();
     }
 
     public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {

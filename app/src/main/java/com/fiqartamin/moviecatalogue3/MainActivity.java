@@ -10,10 +10,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.fiqartamin.moviecatalogue3.data.FavoriteDbHelper;
+import com.fiqartamin.moviecatalogue3.data.FavoriteHelper;
+
 public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
+    private FavoriteHelper favoriteHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +37,14 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(R.drawable.movie_white);
         tabLayout.getTabAt(1).setIcon(R.drawable.tv_white);
 
+        favoriteHelper = FavoriteHelper.getInstance(getApplicationContext());
+        favoriteHelper.open();
+
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setElevation(0);
+
+        if (actionBar != null){
+            actionBar.setElevation(0);
+        }
     }
 
     @Override
