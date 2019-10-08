@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_movie"
+        android:title="@string/movie"
+        android:icon="@drawable/movie_white"/>
+
+    <item
+        android:id="@+id/tab_tv"
+        android:title="@string/tv_show"
+        android:icon="@drawable/tv_white"/>
+
+</menu>

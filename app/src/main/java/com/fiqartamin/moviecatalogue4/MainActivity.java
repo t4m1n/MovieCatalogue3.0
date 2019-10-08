@@ -29,12 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.AddFragment(new MovieFragment(), getString(R.string.movie));
         adapter.AddFragment(new TvshowFragment(), getString(R.string.tv_show));
+        adapter.AddFragment(new FavoriteFragment(), getString(R.string.favorite));
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.movie_white);
         tabLayout.getTabAt(1).setIcon(R.drawable.tv_white);
+        tabLayout.getTabAt(2).setIcon(R.drawable.favorite_border_white);
 
         favoriteHelper = FavoriteHelper.getInstance(getApplicationContext());
         favoriteHelper.open();
