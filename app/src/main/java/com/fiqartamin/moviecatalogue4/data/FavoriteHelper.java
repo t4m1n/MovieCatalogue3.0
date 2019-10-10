@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import static android.provider.BaseColumns._ID;
+import static com.fiqartamin.moviecatalogue4.data.FavoriteContract.FavoriteEntry.COLUMN_CATEGORY;
 import static com.fiqartamin.moviecatalogue4.data.FavoriteContract.FavoriteEntry.COLUMN_MOVIEID;
 import static com.fiqartamin.moviecatalogue4.data.FavoriteContract.FavoriteEntry.TABLE_NAME;
 
@@ -44,12 +45,12 @@ public class FavoriteHelper {
             database.close();
     }
 
-    public Cursor queryAll() {
+    public Cursor queryAll(String category) {
         return database.query(
                 DATABASE_TABLE,
                null,
-               null,
-               null,
+               COLUMN_CATEGORY + " = ?",
+               new String[]{category},
                null,
                null,
                _ID + " ASC");

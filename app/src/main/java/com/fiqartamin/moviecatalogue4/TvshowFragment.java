@@ -45,6 +45,7 @@ public class TvshowFragment extends Fragment {
 
         showLoading(true);
         setupRecyclerView();
+
         return v;
     }
 
@@ -60,7 +61,6 @@ public class TvshowFragment extends Fragment {
             tvAdapter.notifyDataSetChanged();
             showLoading(false);
         });
-
     }
 
     private void showLoading(Boolean state) {
