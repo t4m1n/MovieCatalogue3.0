@@ -14,15 +14,14 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.fiqartamin.moviecatalogue4.FavoriteMovieDetActivity;
 import com.fiqartamin.moviecatalogue4.Model.Favorite;
-import com.fiqartamin.moviecatalogue4.MovieDetActivity;
 import com.fiqartamin.moviecatalogue4.R;
 
 import java.util.ArrayList;
 
-public class FavoriteMovieAdapter extends RecyclerView.Adapter<FavoriteMovieAdapter.FavoriteViewHolder> {
+public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder> {
     ArrayList<Favorite> listFavorites;
 
-    public FavoriteMovieAdapter(ArrayList<Favorite> listFavorites) {
+    public FavoriteAdapter(ArrayList<Favorite> listFavorites) {
         this.listFavorites = listFavorites;
     }
 

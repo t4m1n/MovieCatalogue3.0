@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.fiqartamin.moviecatalogue4.adapter.ViewPagerAdapter;
 import com.fiqartamin.moviecatalogue4.data.FavoriteHelper;
 
 public class MainActivity extends AppCompatActivity {

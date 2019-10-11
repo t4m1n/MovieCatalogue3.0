@@ -3,11 +3,8 @@ package com.fiqartamin.moviecatalogue4;
 
 import android.annotation.SuppressLint;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,19 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.fiqartamin.moviecatalogue4.Model.Favorite;
-import com.fiqartamin.moviecatalogue4.Model.Movie;
-import com.fiqartamin.moviecatalogue4.adapter.FavoriteMovieAdapter;
-import com.fiqartamin.moviecatalogue4.adapter.FavoriteMovieAdapter;
-import com.fiqartamin.moviecatalogue4.adapter.MovieAdapter;
+import com.fiqartamin.moviecatalogue4.adapter.FavoriteAdapter;
 import com.fiqartamin.moviecatalogue4.data.FavoriteHelper;
-import com.fiqartamin.moviecatalogue4.data.FavoriteMappingHelper;
-import com.fiqartamin.moviecatalogue4.viewmodels.MovieViewModel;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import static com.fiqartamin.moviecatalogue4.data.FavoriteContract.FavoriteEntry.COLUMN_BACKDROP_PATH;
@@ -40,7 +29,7 @@ import static com.fiqartamin.moviecatalogue4.data.FavoriteContract.FavoriteEntry
 import static com.fiqartamin.moviecatalogue4.data.FavoriteContract.FavoriteEntry.COLUMN_USERRATING;
 
 public class FavoriteMovieFragment extends Fragment {
-    private FavoriteMovieAdapter favoriteAdapter;
+    private FavoriteAdapter favoriteAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Favorite> listFavorites = new ArrayList<>();
 
@@ -50,7 +39,6 @@ public class FavoriteMovieFragment extends Fragment {
 
     public FavoriteMovieFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,29 +66,25 @@ public class FavoriteMovieFragment extends Fragment {
         Cursor result = favoriteHelper.queryAll("1"); // 1 movie, 2 tv
         result.moveToFirst();
 
-        if (result.getCount() > 0) {
-            for (int count = 0; count < result.getCount(); count++) {
-                result.moveToPosition(count);
-                listFavorites.add(new Favorite(
-                        result.getInt(result.getColumnIndexOrThrow(COLUMN_MOVIEID)),
-                        result.getString(result.getColumnIndexOrThrow(COLUMN_TITLE)),
-                        result.getString(result.getColumnIndexOrThrow(COLUMN_RELEASE)),
-                        result.getString(result.getColumnIndexOrThrow(COLUMN_PLOT_SYNOPSIS)),
-                        result.getString(result.getColumnIndexOrThrow(COLUMN_USERRATING)),
-                        result.getString(result.getColumnIndexOrThrow(COLUMN_POSTER_PATH)),
-                        result.getString(result.getColumnIndexOrThrow(COLUMN_BACKDROP_PATH)),
-                        result.getString(result.getColumnIndexOrThrow(COLUMN_CATEGORY))
-                ));
-            }
-        } else {
-            Toast.makeText(getContext().getApplicationContext(), "Data Favorite Tidak Ada", Toast.LENGTH_SHORT).show();
+        for (int count = 0; count < result.getCount(); count++) {
+            result.moveToPosition(count);
+            listFavorites.add(new Favorite(
+                    result.getInt(result.getColumnIndexOrThrow(COLUMN_MOVIEID)),
+                    result.getString(result.getColumnIndexOrThrow(COLUMN_TITLE)),
+                    result.getString(result.getColumnIndexOrThrow(COLUMN_RELEASE)),
+                    result.getString(result.getColumnIndexOrThrow(COLUMN_PLOT_SYNOPSIS)),
+                    result.getString(result.getColumnIndexOrThrow(COLUMN_USERRATING)),
+                    result.getString(result.getColumnIndexOrThrow(COLUMN_POSTER_PATH)),
+                    result.getString(result.getColumnIndexOrThrow(COLUMN_BACKDROP_PATH)),
+                    result.getString(result.getColumnIndexOrThrow(COLUMN_CATEGORY))
+            ));
         }
 
     }
 
     private void setupRecyclerView() {
         if (favoriteAdapter == null) {
-            favoriteAdapter = new FavoriteMovieAdapter(listFavorites);
+            favoriteAdapter = new FavoriteAdapter(listFavorites);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setAdapter(favoriteAdapter);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
