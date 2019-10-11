@@ -105,11 +105,16 @@ public class Favorite implements Parcelable {
         dest.writeString(this.Overview);
     }
 
-    public Favorite(String Title, String Overview, String Release, String PosterPath) {
+    public Favorite(int MovieId, String Title, String Release, String Overview,
+                    String UserRating, String PosterPath, String BackdropPath, String Category) {
+        this.MovieId = MovieId;
         this.Title = Title;
         this.Overview = Overview;
         this.Release = Release;
+        this.UserRating = UserRating;
         this.PosterPath = PosterPath;
+        this.BackdropPath = BackdropPath;
+        this.Category = Category;
     }
 
     public Favorite(Parcel in) {

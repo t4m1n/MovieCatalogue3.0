@@ -1,10 +1,12 @@
 package com.fiqartamin.moviecatalogue4;
 
-
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.fiqartamin.moviecatalogue4.Model.Movie;
 import com.fiqartamin.moviecatalogue4.adapter.MovieAdapter;
@@ -29,7 +32,6 @@ public class MovieFragment extends Fragment {
     private ProgressBar progressBar;
 
     View v;
-
 
     public MovieFragment() {
     }
@@ -52,11 +54,12 @@ public class MovieFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         movieViewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
         movieViewModel.init();
+
         movieViewModel.getMovieRepository().observe(this, movieResponse ->{
             List<Movie> movies = movieResponse.getResults();
+            movieArrayList.clear();
             movieArrayList.addAll(movies);
             movieAdapter.notifyDataSetChanged();
             showLoading(false);

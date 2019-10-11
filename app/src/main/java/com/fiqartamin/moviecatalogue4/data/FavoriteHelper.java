@@ -34,6 +34,7 @@ public class FavoriteHelper {
         return INSTANCE;
     }
 
+
     public void open() throws SQLException {
         database = favoriteDbHelper.getReadableDatabase();
     }

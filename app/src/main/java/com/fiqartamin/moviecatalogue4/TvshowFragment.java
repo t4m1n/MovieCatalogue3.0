@@ -57,6 +57,7 @@ public class TvshowFragment extends Fragment {
         tvViewModel.init();
         tvViewModel.getTvRepository().observe(this, tvResponse ->{
             List<Tv> tvs = tvResponse.getResults();
+            tvArrayList.clear();
             tvArrayList.addAll(tvs);
             tvAdapter.notifyDataSetChanged();
             showLoading(false);

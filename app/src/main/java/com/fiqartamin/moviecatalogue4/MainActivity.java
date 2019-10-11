@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.AddFragment(new TvshowFragment(), getString(R.string.tv_show));
         adapter.AddFragment(new FavoriteFragment(), getString(R.string.favorite));
 
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 

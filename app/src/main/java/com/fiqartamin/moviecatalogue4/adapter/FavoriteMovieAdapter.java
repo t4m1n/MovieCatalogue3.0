@@ -1,6 +1,6 @@
 package com.fiqartamin.moviecatalogue4.adapter;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -12,15 +12,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.fiqartamin.moviecatalogue4.FavoriteMovieDetActivity;
 import com.fiqartamin.moviecatalogue4.Model.Favorite;
+import com.fiqartamin.moviecatalogue4.MovieDetActivity;
 import com.fiqartamin.moviecatalogue4.R;
 
 import java.util.ArrayList;
 
-public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder> {
+public class FavoriteMovieAdapter extends RecyclerView.Adapter<FavoriteMovieAdapter.FavoriteViewHolder> {
     ArrayList<Favorite> listFavorites;
 
-    public FavoriteAdapter(ArrayList<Favorite> listFavorites) {
+    public FavoriteMovieAdapter(ArrayList<Favorite> listFavorites) {
         this.listFavorites = listFavorites;
     }
 
@@ -36,6 +38,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
             @Override
             public void onClick(View v) {
                 Toast.makeText(vHolder.itemView.getContext(), listFavorites.get(vHolder.getAdapterPosition()).getTitle(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(vHolder.itemView.getContext(), FavoriteMovieDetActivity.class);
+                intent.putExtra(FavoriteMovieDetActivity.EXTRA_MOVIE, listFavorites.get(vHolder.getAdapterPosition()));
+                vHolder.itemView.getContext().startActivities(new Intent[]{intent});
             }
         });
 
